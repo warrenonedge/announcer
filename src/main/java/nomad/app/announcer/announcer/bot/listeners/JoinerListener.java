@@ -61,6 +61,10 @@ public class JoinerListener extends ListenerAdapter {
 			event.getGuild().getAudioManager().closeAudioConnection();
 			// Notify the user.
 			channel.sendMessage("Disconnected from the voice channel!").queue();
+		} else if (message.equals(">help")) {
+			channel.sendMessage("Type >join for me to join your voice channel.").queue();
+			channel.sendMessage("Type >leave for me to leave your voice channel.").queue();
+			return;
 		}
 	}
 }

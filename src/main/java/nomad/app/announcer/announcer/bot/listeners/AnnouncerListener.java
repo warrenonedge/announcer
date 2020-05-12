@@ -35,7 +35,8 @@ public class AnnouncerListener extends ListenerAdapter {
 			}
 
 			log.info("User joined: " + user.getName());
-			talkInVoiceChannel(botVChannel, event.getGuild().getAudioManager(), user.getName());
+			talkInVoiceChannel(botVChannel, event.getGuild().getAudioManager(),
+					event.getGuild().getMember(user).getEffectiveName());
 		}
 	}
 
@@ -51,7 +52,8 @@ public class AnnouncerListener extends ListenerAdapter {
 				}
 
 				log.info("User joined: " + user.getName());
-				talkInVoiceChannel(botVChannel, event.getGuild().getAudioManager(), user.getName());
+				talkInVoiceChannel(botVChannel, event.getGuild().getAudioManager(),
+						event.getGuild().getMember(user).getEffectiveName());
 			}
 		}
 
@@ -78,7 +80,7 @@ public class AnnouncerListener extends ListenerAdapter {
 		audioManager.setSendingHandler(handler);
 		audioManager.openAudioConnection(voiceChannel);
 
-		String toSay = user + " has entered the channel.".replaceAll(" ", "+");
+		String toSay = (user + " has entered the channel.").replaceAll(" ", "+");
 		String url = googleTTS + toSay;
 		log.info(url);
 		playerManager.loadItem(url, new AudioLoadResultHandler() {
